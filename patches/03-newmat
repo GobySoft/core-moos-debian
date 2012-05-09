@@ -1,0 +1,71 @@
+--- /dev/null
++++ b/cmake_modules/FindNEWMAT.cmake
+@@ -0,0 +1,15 @@
++find_library(NEWMAT_LIBRARY NAMES newmat
++  DOC "The Newmat library")
++
++find_path(NEWMAT_INCLUDE_DIR newmat/newmat.h)
++
++mark_as_advanced(NEWMAT_INCLUDE_DIR NEWMAT_LIBRARY)
++
++include(FindPackageHandleStandardArgs)
++find_package_handle_standard_args(Newmat DEFAULT_MSG
++  NEWMAT_LIBRARY NEWMAT_INCLUDE_DIR )
++
++if(NEWMAT_FOUND)
++  set(NEWMAT_INCLUDE_DIRS ${NEWMAT_INCLUDE_DIR})
++  set(NEWMAT_LIBRARIES ${NEWMAT_LIBRARY})
++endif()
+--- a/NavigationAndControl/pHelm/CMakeLists.txt
++++ b/NavigationAndControl/pHelm/CMakeLists.txt
+@@ -9,7 +9,13 @@
+ #what files are needed?
+ SET(PHELM_SRCS HelmApp.cpp HelmApp.h HelmMain.cpp  ${RESOURCES})
+ 
+-SET( BUILD_NEWMAT ON CACHE BOOL "Build Newmat" FORCE)
++find_package(NEWMAT QUIET)
++if(NEWMAT_FOUND)
++   INCLUDE_DIRECTORIES(${NEWMAT_INCLUDE_DIR}/newmat)
++else()
++   SET( BUILD_NEWMAT ON CACHE BOOL "Build Newmat" FORCE)
++   INCLUDE_DIRECTORIES(${THIRDPARTY_DIR} ${THIRDPARTY_DIR}/newmat)
++endif()
+ 
+ INCLUDE_DIRECTORIES(${MOOS_SOURCE_DIR}/NavigationAndControl)
+ INCLUDE_DIRECTORIES(${THIRDPARTY_DIR} ${THIRDPARTY_DIR}/newmat)
+--- a/NavigationAndControl/pNav/CMakeLists.txt
++++ b/NavigationAndControl/pNav/CMakeLists.txt
+@@ -9,8 +9,13 @@
+ #what files are needed?
+ SET(PNAV_SRCS MOOSNavigator.cpp pNavMain.cpp MOOSPriorityInput.cpp MOOSNavigator.h MOOSPriorityInput.h ${RESOURCES})
+ 
+-SET( BUILD_NEWMAT ON CACHE BOOL "Build Newmat" FORCE)
+-INCLUDE_DIRECTORIES(${THIRDPARTY_DIR} ${THIRDPARTY_DIR}/newmat)
++find_package(NEWMAT QUIET)
++if(NEWMAT_FOUND)
++   INCLUDE_DIRECTORIES(${NEWMAT_INCLUDE_DIR}/newmat)
++else()
++   SET( BUILD_NEWMAT ON CACHE BOOL "Build Newmat" FORCE)
++   INCLUDE_DIRECTORIES(${THIRDPARTY_DIR} ${THIRDPARTY_DIR}/newmat)
++endif()
+ 
+ # Add executable called pLogger
+ ADD_EXECUTABLE( pNav ${PNAV_SRCS})
+--- a/Tools/Simulation/Ocean/uMVS/CMakeLists.txt
++++ b/Tools/Simulation/Ocean/uMVS/CMakeLists.txt
+@@ -26,8 +26,13 @@
+ 	${RESOURCES})
+ 
+ 
+-SET( BUILD_NEWMAT ON CACHE BOOL "Build Newmat" FORCE)
+-INCLUDE_DIRECTORIES(${THIRDPARTY_DIR} ${THIRDPARTY_DIR}/newmat)
++find_package(NEWMAT QUIET)
++if(NEWMAT_FOUND)
++   INCLUDE_DIRECTORIES(${NEWMAT_INCLUDE_DIR}/newmat)
++else()
++   SET( BUILD_NEWMAT ON CACHE BOOL "Build Newmat" FORCE)
++   INCLUDE_DIRECTORIES(${THIRDPARTY_DIR} ${THIRDPARTY_DIR}/newmat)
++endif()
+ 
+ # Add executable called uMVS
+ ADD_EXECUTABLE( uMVS ${UMVS_SRCS})

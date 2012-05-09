@@ -1,0 +1,20 @@
+Source: moos
+Section: science
+Priority: extra
+Maintainer: Toby Schneider <tes.aubergine@gmail.com>
+Build-Depends: cdbs,
+               debhelper (>= 7.0.50~),
+               cmake, 
+               libfltk1.1-dev, 
+               libxft-dev, 
+               libgl1-mesa-dev, 
+               libnewmat10-dev
+Standards-Version: 3.9.3
+Homepage: http://www.robots.ox.ac.uk/~mobile/MOOS/wiki/pmwiki.php
+
+Package: moos
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Cross Platform Software for Robotics Research. 
+ From An Overview of MOOS-IvP and a Users Guide to the IvP Helm Autonomy Software (http://hdl.handle.net/1721.1/57583): MOOS is often described as autonomy "middleware" which can be argued is shorthand for the glue that connects a collection of applications where the "real" work is going on. MOOS does indeed connect a collection of applications.... 
+ However, each application inherits a generic MOOS interface whose implementation provides a powerful, easy-to-use means of communicating with other applications and controlling the relative frequency at which the application executes its primary set of functions. Due to its combination of ease-of-use, general extendability and reliability, it has been used in the classroom by students with no prior experience, as well on many extended field exercises with substantial robotic resources at stake. 
