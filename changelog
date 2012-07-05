@@ -1,3 +1,9 @@
+moos (0.2376-1tes2~precise1) precise; urgency=low
+
+  * Patch to iMatlab for allow .moos file parameters
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Thu, 05 Jul 2012 10:55:14 -0400
+
 moos (0.2376-1tes1~squeeze1) squeeze; urgency=low
 
   * New upstream based on SVN revision 2376
