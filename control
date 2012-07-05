@@ -2,15 +2,11 @@ Source: moos
 Section: science
 Priority: extra
 Maintainer: Toby Schneider <tes.aubergine@gmail.com>
-Build-Depends: cdbs,
-               debhelper (>= 7.0.50~),
-               cmake, 
-               libfltk1.1-dev, 
-               libxft-dev, 
-               libgl1-mesa-dev, 
-               libnewmat10-dev
+Build-Depends: cdbs, debhelper (>= 7.0.50~), cmake, libfltk1.1-dev, libxft-dev, libgl1-mesa-dev
 Standards-Version: 3.9.3
 Homepage: http://www.robots.ox.ac.uk/~mobile/MOOS/wiki/pmwiki.php
+#Vcs-Git: git://git.debian.org/collab-maint/moos.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/moos.git;a=summary
 
 Package: moos
 Architecture: any

@@ -1,10 +1,4 @@
-moos (0.2376-1tes2~oneiric1) precise; urgency=low
-
-  * Removed in-package build of libnewmat10-dev in favor of Debian provided version
-
- -- Toby Schneider <tes.aubergine@gmail.com>  Tue, 08 May 2012 21:25:47 -0400
-
-moos (0.2376-1tes1~oneiric1) oneiric; urgency=low
+moos (0.2376-1tes1~squeeze1) squeeze; urgency=low
 
   * New upstream based on SVN revision 2376
   * Patches for MOOS-IvP project additions to pMOOSBridge
