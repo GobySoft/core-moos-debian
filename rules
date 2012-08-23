@@ -1,5 +1,14 @@
 #!/usr/bin/make -f
 
+UPSTREAM_REPOSITORY = svn://login2.robots.ox.ac.uk/MOOS/trunk
+UPSTREAM_REVISION := $(shell svn info $(UPSTREAM_REPOSITORY) | grep Revision | sed 's/Revision: //')
+
+get-orig-source:
+	svn export -q $(UPSTREAM_REPOSITORY) moos-0.$(UPSTREAM_REVISION)	
+	tar cfz moos_0.$(UPSTREAM_REVISION).orig.tar.gz moos-0.$(UPSTREAM_REVISION)
+	rm -rf moos-0.$(UPSTREAM_REVISION)
+
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/cmake.mk
 
@@ -19,3 +28,7 @@ DEB_CMAKE_EXTRA_FLAGS = -DBUILD_CONTROL_AND_NAV=ON                   \
    -DBUILD_OCEAN_INSTRUMENTS=OFF                \
    -DBUILD_UMVS=ON                              \
    -DBUILD_UPB=ON                               
+
+DEB_BUILD_PARALLEL = true
+
+
