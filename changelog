@@ -1,4 +1,10 @@
-moos (0.2376-1tes2~precise1) precise; urgency=low
+moos (0.2376-2mbat1~squeeze1) squeeze; urgency=low
+
+  * Package build for MBAT
+
+ --  LAMSS <lamss@mit.edu>  Wed, 22 Aug 2012 15:08:51 +0000
+
+moos (0.2376-1tes2~squeeze1) squeeze; urgency=low
 
   * Patch to iMatlab for allow .moos file parameters
 
