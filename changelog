@@ -1,4 +1,10 @@
-moos (0.2376-1tes2~precise1) precise; urgency=low
+moos (0.2376-1tes3~squeeze1) squeeze; urgency=low
+
+  * Patch to CMOOSFileReader to avoid stripping quotations
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Tue, 30 Oct 2012 13:47:52 -0400
+
+moos (0.2376-1tes2~quantal1) quantal; urgency=low
 
   * Patch to iMatlab for allow .moos file parameters
 
