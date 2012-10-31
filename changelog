@@ -1,4 +1,4 @@
-moos (0.2376-1tes3~squeeze1) squeeze; urgency=low
+moos (0.2376-1tes3~quantal1) quantal; urgency=low
 
   * Patch to CMOOSFileReader to avoid stripping quotations
 
