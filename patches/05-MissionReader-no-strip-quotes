@@ -1,0 +1,11 @@
+--- a/Core/MOOSGenLib/MOOSFileReader.cpp
++++ b/Core/MOOSGenLib/MOOSFileReader.cpp
+@@ -60,7 +60,7 @@
+ {
+ 	//by default we want to use quotes to allow verbatim
+ 	//strings
+-	EnableVerbatimQuoting(true);
++	EnableVerbatimQuoting(false);
+     m_pLock = new CMOOSLock();
+ }
+ 

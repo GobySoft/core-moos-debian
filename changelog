@@ -1,3 +1,9 @@
+moos (0.2376-1tes3~squeeze1) squeeze; urgency=low
+
+  * Patch to CMOOSFileReader to avoid stripping quotations
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Tue, 30 Oct 2012 13:47:52 -0400
+
 moos (0.2376-2mbat1~squeeze1) squeeze; urgency=low
 
   * Package build for MBAT
