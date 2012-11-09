@@ -1,3 +1,9 @@
+moos (0.2376-1tes4~precise1) precise; urgency=low
+
+  * Patch to CMOOSGeodesy to use PROJ.4 instead of hacked together transforms for UTM
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Fri, 09 Nov 2012 13:53:27 -0500
+
 moos (0.2376-1tes3~squeeze1) squeeze; urgency=low
 
   * Patch to CMOOSFileReader to avoid stripping quotations
