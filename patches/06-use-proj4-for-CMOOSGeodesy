@@ -44,7 +44,17 @@
  /*Reference ellipsoids derived from Peter H. Dana's website- 
  http://www.utexas.edu/depts/grg/gcraft/notes/datum/elist.html
  Department of Geography, University of Texas at Austin
-@@ -85,7 +95,8 @@
+@@ -59,7 +69,8 @@
+ // Construction/Destruction
+ //////////////////////////////////////////////////////////////////////
+ 
+-CMOOSGeodesy::CMOOSGeodesy()
++CMOOSGeodesy::CMOOSGeodesy() : pj_utm_(0),
++                               pj_latlong_(0)
+ {
+     //create the variables by Zeroing
+     SetMetersNorth(0.0);
+@@ -85,7 +96,8 @@
  
  CMOOSGeodesy::~CMOOSGeodesy()
  {
@@ -54,7 +64,7 @@
  }
  
  /**
-@@ -112,22 +123,38 @@
+@@ -112,22 +124,38 @@
      SetOriginLatitude(lat);
      SetOriginLongitude(lon);
  
@@ -103,7 +113,7 @@
  
      return true;
  }
-@@ -163,111 +190,6 @@
+@@ -163,111 +191,6 @@
      return m_dEast;
  }
  
@@ -215,7 +225,7 @@
  void CMOOSGeodesy::SetMetersNorth(double North)
  {
      m_dNorth = North;
-@@ -298,13 +220,12 @@
+@@ -298,13 +221,12 @@
      m_iRefEllipsoid = refEllipsoid;
  }
  
@@ -232,7 +242,7 @@
  {
      return m_sUTMZone;
  }
-@@ -336,44 +257,25 @@
+@@ -336,44 +258,31 @@
                                      double &MetersNorth,
                                      double &MetersEast)
  {
@@ -274,14 +284,20 @@
 +    MetersNorth = std::numeric_limits<double>::quiet_NaN();
 +    MetersEast =  std::numeric_limits<double>::quiet_NaN();
 +
++    if(!pj_latlong_ || !pj_utm_)
++    {
++        std::cerr << "Must call Initialise before calling LatLong2LocalUTM" << std::endl;
++        return false;
+     }
+ 
+-    //This is the total distance traveled thus far, either North or East
 +    int err;
 +    if(err = pj_transform(pj_latlong_, pj_utm_, 1, 1, &tmpEast, &tmpNorth, NULL ))
 +    {
 +        std::cerr << "Failed to transform (lat,lon) = (" << lat << "," << lon << "), reason: " << pj_strerrno(err) << std::endl;
 +        return false;
-     }
- 
--    //This is the total distance traveled thus far, either North or East
++    }
++
 +    dN = tmpNorth - GetOriginNorthing();
 +    dE = tmpEast - GetOriginEasting();
 +    SetMetersNorth(dN);
@@ -292,7 +308,7 @@
      return true;
  }
  
-@@ -488,50 +390,21 @@
+@@ -488,50 +397,27 @@
  
  bool CMOOSGeodesy::UTM2LatLong(double dfX, double dfY, double& dfLat, double& dfLong)
  {
@@ -302,18 +318,13 @@
 -    double dfx=dfX;
 -    double dfy=dfY;
 -    double eps = 1.0; // accuracy in m
+-    
+-    while (err > eps)
+-    {
+-        double dflat, dflon, dfnew_x, dfnew_y ;
 +    double x = dfX + GetOriginEasting();
 +    double y = dfY + GetOriginNorthing();
-+
-+    dfLat = std::numeric_limits<double>::quiet_NaN();
-+    dfLong = std::numeric_limits<double>::quiet_NaN();
-     
--    while (err > eps)
-+    int err;
-+    if(err = pj_transform(pj_utm_, pj_latlong_, 1, 1, &x, &y, NULL))
-     {
--        double dflat, dflon, dfnew_x, dfnew_y ;
--
+ 
 -        // first guess geodesic
 -        if (!LocalGrid2LatLong(dfx,dfy,dflat,dflon))
 -            return(false);
@@ -341,15 +352,26 @@
 -        err = hypot(dfnew_x-dfX,dfnew_y-dfY);
 -        
 -        //MOOSTrace("UTM2LatLong: error = %f\n",err); 
-+        std::cerr << "Failed to transform (x,y) = (" << dfX << "," << dfY << "), reason: " << pj_strerrno(err) << std::endl;
++    dfLat = std::numeric_limits<double>::quiet_NaN();
++    dfLong = std::numeric_limits<double>::quiet_NaN();
++
++    if(!pj_latlong_ || !pj_utm_)
++    {
++        std::cerr << "Must call Initialise before calling LatLong2LocalUTM" << std::endl;
 +        return false;
      }
--    
+     
 -    if (!LocalGrid2LatLong(dfx, dfy, dfLat, dfLong))
 -        return(false);
 -    
 -    
 - 	return true;
++    int err;
++    if(err = pj_transform(pj_utm_, pj_latlong_, 1, 1, &x, &y, NULL))
++    {
++        std::cerr << "Failed to transform (x,y) = (" << dfX << "," << dfY << "), reason: " << pj_strerrno(err) << std::endl;
++        return false;
++    }
 +
 +    dfLat = y * RAD_TO_DEG;
 +    dfLong = x * RAD_TO_DEG;

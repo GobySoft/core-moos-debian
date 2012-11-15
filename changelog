@@ -1,4 +1,4 @@
-moos (0.2376-1tes4~lucid1) lucid; urgency=low
+moos (0.2376-1tes4~quantal1) quantal; urgency=low
 
   * Patch to CMOOSGeodesy to use PROJ.4 instead of hacked together transforms for UTM
 
