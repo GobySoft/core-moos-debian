@@ -357,7 +357,7 @@
 +
 +    if(!pj_latlong_ || !pj_utm_)
 +    {
-+        std::cerr << "Must call Initialise before calling LatLong2LocalUTM" << std::endl;
++        std::cerr << "Must call Initialise before calling UTM2LatLong" << std::endl;
 +        return false;
      }
      
