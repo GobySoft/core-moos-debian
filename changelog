@@ -1,4 +1,17 @@
-moos (0.2376-1tes4~quantal1) quantal; urgency=low
+moos (0.2376-6tes2~precise1) precise; urgency=low
+
+  * Switched all MOOS libraries to build shared (.so).
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Tue, 20 Nov 2012 16:52:10 -0500
+
+moos (0.2376-6tes1~quantal1) quantal; urgency=low
+
+  * Updated patch to CMOOSGeodesy to use PROJ.4 to gracefully handle calling transforms *before* calling Initialise.
+  * Changed Debian version number to match patch number.
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Thu, 15 Nov 2012 17:19:26 -0500
+
+moos (0.2376-1tes4~precise1) precise; urgency=low
 
   * Patch to CMOOSGeodesy to use PROJ.4 instead of hacked together transforms for UTM
 
