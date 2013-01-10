@@ -27,8 +27,7 @@ DEB_CMAKE_EXTRA_FLAGS = -DBUILD_CONTROL_AND_NAV=ON                   \
    -DBUILD_LAND_INSTRUMENTS=OFF                 \
    -DBUILD_OCEAN_INSTRUMENTS=OFF                \
    -DBUILD_UMVS=ON                              \
-   -DBUILD_UPB=ON                               \
-   -DBUILD_SHARED_LIBS=ON
+   -DBUILD_UPB=ON                               
 
 DEB_BUILD_PARALLEL = true
 

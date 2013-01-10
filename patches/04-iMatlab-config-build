@@ -1,7 +1,5 @@
-Index: MOOS/CMakeLists.txt
-===================================================================
---- MOOS/CMakeLists.txt	(revision 4566)
-+++ MOOS/CMakeLists.txt	(working copy)
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
 @@ -255,3 +255,9 @@
    export(PACKAGE MOOS)
  endif("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" GREATER 2.7)
@@ -12,14 +10,12 @@ Index: MOOS/CMakeLists.txt
 +
 +# install iMatlab source to allow user to build from DFSG package
 +install(DIRECTORY ${CMAKE_SOURCE_DIR}/Tools/Matlab/iMatlab DESTINATION ${CMAKE_INSTALL_PREFIX}/share/moos FILES_MATCHING REGEX ".*\\.h$|.*\\.cpp$|.*\\.m$" PATTERN "CMakeFiles" EXCLUDE PATTERN ".svn" EXCLUDE )
-Index: MOOS/Tools/Matlab/iMatlab/build_iMatlab.m.in
-===================================================================
---- MOOS/Tools/Matlab/iMatlab/build_iMatlab.m.in	(revision 0)
-+++ MOOS/Tools/Matlab/iMatlab/build_iMatlab.m.in	(revision 0)
-@@ -0,0 +1,26 @@
+--- /dev/null
++++ b/Tools/Matlab/iMatlab/build_iMatlab.m.in
+@@ -0,0 +1,27 @@
 +% same as CMAKE_INSTALL_PREFIX when building MOOS
 +% packages will use '/usr', default source builds use '/usr/local'
-+moos_install_prefix='@CMAKE_INSTALL_PREFIX@'; 
++moos_install_prefix='/usr';
 +disp(['Using moos installed in: ' moos_install_prefix]);
 +% full path to the current matlab installation (matlabroot should give
 +% this), e.g. /usr/local/MATLAB/R2011a
@@ -35,7 +31,7 @@ Index: MOOS/Tools/Matlab/iMatlab/build_iMatlab.m.in
 +    moos_install_prefix '/share/moos/iMatlab/mexVNLHelpers.cpp ' ...
 +    moos_install_prefix '/lib/libMOOS.a ' ...
 +    moos_install_prefix '/lib/libMOOSGen.a ' ...
-+    moos_install_prefix '/lib/libMOOSUtility.a ' ...
++    '-lMOOSUtility ' ...
 +    '-I' moos_install_prefix '/include ' ...
 +    '-I' moos_install_prefix '/share/moos/iMatlab ' ...
 +    '-I' matlab_include ' ' ...
@@ -43,10 +39,9 @@ Index: MOOS/Tools/Matlab/iMatlab/build_iMatlab.m.in
 +
 +eval(['mex ' params]);
 +disp(['Success... Make sure "' output_directory '" is on your Matlab path.']);
-Index: MOOS/Tools/Matlab/iMatlab/iMatlab.cpp
-===================================================================
---- MOOS/Tools/Matlab/iMatlab/iMatlab.cpp	(revision 4566)
-+++ MOOS/Tools/Matlab/iMatlab/iMatlab.cpp	(working copy)
++
+--- a/Tools/Matlab/iMatlab/iMatlab.cpp
++++ b/Tools/Matlab/iMatlab/iMatlab.cpp
 @@ -250,7 +250,7 @@
  
  
@@ -56,10 +51,11 @@ Index: MOOS/Tools/Matlab/iMatlab/iMatlab.cpp
  {
      
      if(bInitialised)
-@@ -390,8 +390,52 @@
+@@ -390,7 +390,51 @@
              }
          }
      }
+-    
 +
 +    // tes 2012-06-20 - write iMatlab configuration to return value [config] = iMatlab('init', ... );
 +    if(nlhs == 1)
@@ -75,7 +71,7 @@ Index: MOOS/Tools/Matlab/iMatlab/iMatlab.cpp
 +            std::string value = (eq_pos != std::string::npos && eq_pos+1 < it->size()) ? it->substr(eq_pos+1) : "";
 +
 +            params[key].push_back(value);
-+        }        
++        }
 +
 +        const int NUMBER_OF_STRUCTS = 1;
 +        const int NUMBER_OF_FIELDS = params.size();
@@ -86,14 +82,14 @@ Index: MOOS/Tools/Matlab/iMatlab/iMatlab.cpp
 +                params.begin(), end = params.end(); it != end; ++it)
 +        {
 +            field_names.push_back(it->first.c_str());
-+        }        
++        }
 +        plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, &field_names[0]);
-+        
++
 +        for(std::map<std::string, std::vector<std::string> >::const_iterator it =
 +                params.begin(), end = params.end(); it != end; ++it)
 +        {
 +            int field = mxGetFieldNumber(plhs[0],it->first.c_str());
-+            
++
 +            std::vector<const char *> values;
 +            for(std::vector<std::string>::const_iterator jt = it->second.begin(),
 +                    endj = it->second.end(); jt != endj; ++jt)
@@ -101,15 +97,13 @@ Index: MOOS/Tools/Matlab/iMatlab/iMatlab.cpp
 +                values.push_back(jt->c_str());
 +            }
 +            mxSetFieldByNumber(plhs[0],0,field,mxCreateCharMatrixFromStrings(values.size(), &values[0]));
-+        }        
-+        
++        }
++
 +    }
 +
      
--    
      std::string sBool;
      
-     //DO WE WANT MOOS COMMS?
 @@ -543,7 +587,7 @@
      
      if(MOOSStrCmp(sCmd,"INIT"))

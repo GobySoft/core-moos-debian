@@ -1,3 +1,9 @@
+moos (0.2376-6tes3~precise1) precise; urgency=low
+
+  * Fixed build_iMatlab.m to reflect MOOSUtility library as shared and reverted change to make all libraries shared.
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Thu, 10 Jan 2013 13:44:19 -0500
+
 moos (0.2376-6tes2~precise1) precise; urgency=low
 
   * Switched all MOOS libraries to build shared (.so).
