@@ -1,0 +1,11 @@
+--- a/Core/MOOSDB/MOOSDB.cpp
++++ b/Core/MOOSDB/MOOSDB.cpp
+@@ -448,7 +448,7 @@
+     //q->second is now a reference to a list of messages that will be
+     //sent to sClient the next time it calls into the database...
+     
+-    q->second.push_front(Msg);
++    q->second.push_back(Msg);
+     
+     return true;
+ }
