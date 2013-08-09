@@ -1,3 +1,9 @@
+moos (0.2376-7tes1~precise1) precise; urgency=low
+
+  * Added patch from Avi Kelman that fixes order of receipt of MOOS packets with the same timestamp
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Fri, 09 Aug 2013 15:04:33 -0400
+
 moos (0.2376-6tes3~precise1) precise; urgency=low
 
   * Fixed build_iMatlab.m to reflect MOOSUtility library as shared and reverted change to make all libraries shared.
