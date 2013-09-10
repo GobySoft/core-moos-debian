@@ -1,4 +1,4 @@
-essential-moos (10~beta-rc1) precise; urgency=low
+core-moos (10.0.0-0~tes1~precise1) precise; urgency=low
 
   * Initial release
 
