@@ -1,3 +1,9 @@
+core-moos (10.0.0-0~tes2~precise1) precise; urgency=low
+
+  * Patch to build with shared library (including SOVERSION)
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Tue, 10 Sep 2013 14:58:10 -0400
+
 core-moos (10.0.0-0~tes1~precise1) precise; urgency=low
 
   * Initial release
