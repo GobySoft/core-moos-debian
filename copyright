@@ -1,10 +1,10 @@
 This work was packaged for Debian by:
 
-    Toby Schneider <tes.aubergine@gmail.com> on Sat, 01 Jan 2011 21:51:24 -0500
+    Toby Schneider <tes.aubergine@gmail.com> on Tue, 10 Sep 2013 14:29:24 -0500
 
 It was downloaded from:
 
-    http://www.robots.ox.ac.uk/~mobile/MOOS/wiki/pmwiki.php
+    https://github.com/themoos/essential-moos
     
 Upstream Author(s):
 
@@ -12,16 +12,15 @@ Upstream Author(s):
 
 Copyright:
 
-    Copyright (C) 2001-2011 Massachusetts Institute of Technology and 
-    Oxford University. 
+    Needs clarification from upstream. Some files (C) Paul Newman, others contain meaningless copy-paste text.
 
 License:
 
-    GNU Public License v3
+    GNU Public License v3? - Need clarification from upstream
 
 The Debian packaging is:
 
-    Copyright (C) 2011 Toby Schneider <tes.aubergine@gmail.com>
+    Copyright (C) 2013 Toby Schneider <tes.aubergine@gmail.com>
 
 and is licensed under the GPL version 3,
 see "/usr/share/common-licenses/GPL-3".
