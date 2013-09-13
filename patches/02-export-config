@@ -1,0 +1,27 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -121,5 +121,8 @@
+ configure_file( "cmake/ProjectConfigVersion.cmake.in" ${VERSION_FILE} @ONLY )
+ 
+ 
++install(EXPORT ${PROJECTNAME}Config DESTINATION share/${PROJECTNAME}/cmake)
++install(FILES ${VERSION_FILE} DESTINATION share/${PROJECTNAME}/cmake)
++
+ 
+ 
+--- a/Core/libMOOS/CMakeLists.txt
++++ b/Core/libMOOS/CMakeLists.txt
+@@ -239,11 +239,12 @@
+ 
+ 
+ # install libraries
+-INSTALL(TARGETS ${LIBNAME}
++INSTALL(TARGETS ${LIBNAME} EXPORT ${PROJECTNAME}Config
+   LIBRARY DESTINATION lib
+   ARCHIVE DESTINATION lib
+ )
+ 
+ 
++
+ add_subdirectory(testing)
+ 
