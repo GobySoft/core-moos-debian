@@ -1,3 +1,21 @@
+core-moos (10.0.0-0~tes5~quantal1) quantal; urgency=low
+
+  * Various minor bugs in control file
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Fri, 13 Sep 2013 13:53:36 -0400
+
+core-moos (10.0.0-0~tes4~precise1) precise; urgency=low
+
+  * Enabled debug package
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Fri, 13 Sep 2013 13:26:22 -0400
+
+core-moos (10.0.0-0~tes3~precise1) precise; urgency=low
+
+  * Patch to create and install CMake export config
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Fri, 13 Sep 2013 13:01:19 -0400
+
 core-moos (10.0.0-0~tes2~precise1) precise; urgency=low
 
   * Patch to build with shared library (including SOVERSION)
