@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -121,5 +121,8 @@
+@@ -201,5 +201,8 @@
  configure_file( "cmake/ProjectConfigVersion.cmake.in" ${VERSION_FILE} @ONLY )
  
  
@@ -11,7 +11,7 @@
  
 --- a/Core/libMOOS/CMakeLists.txt
 +++ b/Core/libMOOS/CMakeLists.txt
-@@ -239,11 +239,12 @@
+@@ -246,11 +246,12 @@
  
  
  # install libraries

@@ -1,3 +1,15 @@
+core-moos (10.0.2-0~tes2~ubuntu12.04.1) precise; urgency=medium
+
+  * Fixed .hxx install
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Mon, 04 Aug 2014 13:42:15 -0400
+
+core-moos (10.0.2-0~tes1~ubuntu12.04.1) precise; urgency=medium
+
+  * New upstream release
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Mon, 04 Aug 2014 11:24:29 -0400
+
 core-moos (10.0.1-0~tes1~wheezy1) wheezy; urgency=low
 
   * New upstream release

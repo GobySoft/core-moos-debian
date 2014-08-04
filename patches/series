@@ -1,2 +1,3 @@
 01-build-soversioned-shared-library
 02-export-config
+03-fix-header-install
