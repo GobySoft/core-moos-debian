@@ -1,3 +1,9 @@
+core-moos (10.0.2-0~tes4~ubuntu10.04.1) lucid; urgency=low
+
+  * Added patch to configure a header file for the ASYNCHONOUS_CLIENT definition
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Wed, 06 Aug 2014 14:46:21 -0400
+
 core-moos (10.0.2-0~tes3~ubuntu14.04.1) trusty; urgency=medium
 
   * Removed dbg package and built with CMAKE_BUILD_TYPE=Release
