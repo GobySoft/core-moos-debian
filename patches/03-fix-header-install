@@ -1,6 +1,6 @@
 --- a/Core/libMOOS/CMakeLists.txt
 +++ b/Core/libMOOS/CMakeLists.txt
-@@ -242,7 +242,7 @@
+@@ -237,7 +237,7 @@
  
  #######################################
  # install headers

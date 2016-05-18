@@ -1,0 +1,38 @@
+--- a/Core/libMOOS/Comms/XPCGetProtocol.cpp
++++ b/Core/libMOOS/Comms/XPCGetProtocol.cpp
+@@ -43,7 +43,11 @@
+ #endif
+ 
+        // Retrieves the protocol structure by name
+-       protocolPtr = getprotobyname(_sName);
++       //protocolPtr = getprotobyname(_sName);
++
++char buf[1024];
++
++       getprotobyname_r(_sName, &protocol, buf, sizeof(buf), &protocolPtr);
+ 
+ }
+ 
+@@ -56,7 +60,11 @@
+ #endif
+ 
+         // Retrieves the protocol structure by number
+-        protocolPtr = getprotobynumber(_iProtocol);
++        //protocolPtr = getprotobynumber(_iProtocol);
++        char buf[1024];
++
++        getprotobynumber_r(_iProtocol,&protocol,
++                          buf, sizeof(buf), &protocolPtr);
+         if (protocolPtr == NULL)
+         {
+               XPCException exceptObject("Could Not Get Protocol By Number");
+--- a/Core/libMOOS/Comms/include/MOOS/libMOOS/Comms/XPCGetProtocol.h
++++ b/Core/libMOOS/Comms/include/MOOS/libMOOS/Comms/XPCGetProtocol.h
+@@ -43,6 +43,7 @@
+     char cIteratorFlag;        // Protocol database iteration flag
+ #endif
+     struct protoent *protocolPtr;    // Pointer to protocol database entry
++    struct protoent protocol;
+ public:
+ #ifdef UNIX
+     // Default constructor.  Opens the protocol database

@@ -1,3 +1,15 @@
+core-moos (10.0.2-0~tes6~ubuntu14.04.1) trusty; urgency=medium
+
+  * Added patch from Josh Leighton for XPCGetProtocol. Fixes "Exception Thrown in listen loop: Error Listening To Socket. Operation not supported" on ARM systems
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Wed, 18 May 2016 14:48:41 -0400
+
+core-moos (10.0.2-0~tes5~ubuntu16.04.1+lp1) xenial; urgency=medium
+
+  * Increment version to rebuild on LP for arm ports
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Tue, 20 Jan 2015 17:02:06 -0500
+
 core-moos (10.0.2-0~tes5~ubuntu14.04.1) trusty; urgency=low
 
   * Build without ASYNC_CLIENT - this seems to cause numerous problems
