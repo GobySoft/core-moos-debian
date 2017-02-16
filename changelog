@@ -1,3 +1,9 @@
+core-moos (10.0.2-0~tes7~ubuntu16.04.1) xenial; urgency=medium
+
+  * Changed USE_ASYNC_COMMS=ON
+
+ -- Toby Schneider <tes.aubergine@gmail.com>  Fri, 03 Jun 2016 12:38:21 -0400
+
 core-moos (10.0.2-0~tes6~ubuntu14.04.1) trusty; urgency=medium
 
   * Added patch from Josh Leighton for XPCGetProtocol. Fixes "Exception Thrown in listen loop: Error Listening To Socket. Operation not supported" on ARM systems
