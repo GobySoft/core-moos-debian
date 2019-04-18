@@ -62,7 +62,7 @@ job-template-amd64: &job-template-amd64
         command: |
           cp /root/src/*.orig.tar.gz ${CIRCLE_WORKING_DIRECTORY}/.. &&
           mkdir -p ${SOURCE_WORKING_DIRECTORY} && cd ${SOURCE_WORKING_DIRECTORY} &&
-          tar xfJ ../*.orig.tar.gz --strip-components=1
+          tar xfz ../*.orig.tar.gz --strip-components=1
     - run: &run-nest-deb
         name: Nest debian source into project source
         command: cp -r /root/debian ${SOURCE_WORKING_DIRECTORY}
