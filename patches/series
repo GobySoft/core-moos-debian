@@ -1,6 +1,5 @@
 01-build-soversioned-shared-library
 02-export-config
 03-fix-header-install
-04-release-10.0.2-bugs
 05-no-magic-preprocessor-defines
 06-xpc-get-protocol-fix-arm

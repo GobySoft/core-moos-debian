@@ -73,12 +73,13 @@ job-template-amd64: &job-template-amd64
           cd ${SOURCE_WORKING_DIRECTORY} &&
           export NEWVERSION="$(echo ../*.orig.tar.gz | sed 's/.*_\(.*\)\.orig\.tar\.gz/\1/')"
           COMMENT="Autobuild for version ${NEWVERSION}" &&
-          cd debian &&
           dch --newversion=${NEWVERSION}-0~${DISTRO_RELEASE_VERSION}.1 -D ${DISTRO_RELEASE_CODENAME} "${COMMENT}"          
     - run: &run-install-build-deps
         name: Install build dependencies
         command: |
-          mk-build-deps -a ${TARGET_ARCH} --host-arch ${TARGET_ARCH} --build-arch amd64 -t "apt-get -y --no-install-recommends -o Debug::pkgProblemResolver=yes" -i "debian/control"
+          cd ${SOURCE_WORKING_DIRECTORY} &&
+          mk-build-deps -a ${TARGET_ARCH} --host-arch ${TARGET_ARCH} --build-arch amd64 -t "apt-get -y --no-install-recommends -o Debug::pkgProblemResolver=yes" -i "debian/control" &&
+          rm -f ${SOURCE_WORKING_DIRECTORY}/*-build-deps*.deb
     - run: &run-build-pkg
         name: Build the Debian package 
         command: |
@@ -90,6 +91,7 @@ job-template-amd64: &job-template-amd64
     - run: &run-store-next-build
         name: Store deb files for next build
         command: |
+          cd ${SOURCE_WORKING_DIRECTORY} &&
           mkdir -p /root/deb &&
           find .. -maxdepth 1 -type f -exec cp {}  /root/deb \; &&
           rm -f /root/deb/*-build-deps*.deb
@@ -106,7 +108,6 @@ job-template-amd64: &job-template-amd64
         root: /root/deb
         paths:
           - '*.dsc'
-          - '*.tar.gz'
           - '*.tar.xz'
           - '*.deb'
           - '*.ddeb'
@@ -115,26 +116,6 @@ job-template-amd64: &job-template-amd64
   
 job-template-cross: &job-template-cross
   <<: *job-template-amd64
-  steps: &steps-cross-compile
-    - checkout
-    - attach-workspace: &attach-deb-workspace
-        at: /root/deb
-    - run: &install-amd64-dccl-compiler
-        name: Install amd64 dccl3-compiler so that we can execute it in this cross-build container
-        command: dpkg -i /root/deb/dccl3-compiler_*amd64.deb
-    - run: *run-update-apt
-    - run: *run-import-gpg
-    - attach-workspace: *attach-src-workspace
-    - run: *run-extract-src
-    - run: *run-nest-deb
-    - run: *run-dch
-    - run: *run-install-build-deps
-    - run: *run-build-pkg
-    - run: *run-store-next-build
-    - run: *run-store-for-artifacts
-    - store_artifacts: *store
-    - run: *remove-orig-source
-    - persist_to_workspace: *persist-debs        
 
 # base upload off Bionic build
 job-template-upload: &job-template-upload
