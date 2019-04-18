@@ -11,6 +11,7 @@ Vcs-Browser: https://github.com/themoos/core-moos
 Package: libmoos10
 Architecture: any
 Section: libs
+Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: moos
 Description: Cross Platform Software for Robotics Research. 
@@ -18,22 +19,24 @@ Description: Cross Platform Software for Robotics Research.
  However, each application inherits a generic MOOS interface whose implementation provides a powerful, easy-to-use means of communicating with other applications and controlling the relative frequency at which the application executes its primary set of functions. Due to its combination of ease-of-use, general extendability and reliability, it has been used in the classroom by students with no prior experience, as well on many extended field exercises with substantial robotic resources at stake. 
  This packages contains the MOOS library (libMOOS) for the redesigned version 10 of MOOS.
 
-Package: libmoos10-dbg
-Architecture: any
-Section: debug
-Depends: libmoos10 (=${binary:Version}),
-         ${misc:Depends}
-Conflicts: moos
-Description: Cross Platform Software for Robotics Research. 
- From An Overview of MOOS-IvP and a Users Guide to the IvP Helm Autonomy Software (http://hdl.handle.net/1721.1/57583): MOOS is often described as autonomy "middleware" which can be argued is shorthand for the glue that connects a collection of applications where the "real" work is going on. MOOS does indeed connect a collection of applications.... 
- However, each application inherits a generic MOOS interface whose implementation provides a powerful, easy-to-use means of communicating with other applications and controlling the relative frequency at which the application executes its primary set of functions. Due to its combination of ease-of-use, general extendability and reliability, it has been used in the classroom by students with no prior experience, as well on many extended field exercises with substantial robotic resources at stake. 
- This packages contains the MOOS library (libMOOS) for the redesigned version 10 of MOOS with the debugging symbols still intact.
+# Package: libmoos10-dbg
+# Architecture: any
+# Section: debug
+# Multi-Arch: same
+# Depends: libmoos10 (=${binary:Version}),
+#          ${misc:Depends}
+# Conflicts: moos
+# Description: Cross Platform Software for Robotics Research. 
+#  From An Overview of MOOS-IvP and a Users Guide to the IvP Helm Autonomy Software (http://hdl.handle.net/1721.1/57583): MOOS is often described as autonomy "middleware" which can be argued is shorthand for the glue that connects a collection of applications where the "real" work is going on. MOOS does indeed connect a collection of applications.... 
+#  However, each application inherits a generic MOOS interface whose implementation provides a powerful, easy-to-use means of communicating with other applications and controlling the relative frequency at which the application executes its primary set of functions. Due to its combination of ease-of-use, general extendability and reliability, it has been used in the classroom by students with no prior experience, as well on many extended field exercises with substantial robotic resources at stake. 
+#  This packages contains the MOOS library (libMOOS) for the redesigned version 10 of MOOS with the debugging symbols still intact.
 
 
 Package: libmoos10-dev
 Architecture: any
 Provides: libmoos-dev
 Section: libdevel
+Multi-Arch: same
 Conflicts: moos
 Depends: libmoos10 (=${binary:Version}),
          ${misc:Depends}
