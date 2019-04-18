@@ -1,5 +1,9 @@
 #!/usr/bin/make -f
 
+UPSTREAM_LAST_RELEASE = 10.0.2
+UPSTREAM_URL = https://github.com/themoos/core-moos/archive/10.0.2.a-release.tar.gz
+get-orig-source:
+	wget $(UPSTREAM_URL) -O core-moos_$(UPSTREAM_LAST_RELEASE).orig.tar.gz
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/cmake.mk
