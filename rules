@@ -12,5 +12,4 @@ include /usr/share/cdbs/1/class/cmake.mk
 # Add here any variable or target overrides you need.
 
 DEB_CMAKE_EXTRA_FLAGS = -DCMAKE_BUILD_TYPE=Release -DUSE_ASYNC_COMMS=ON
-#DEB_DH_STRIP_ARGS = --dbg-package=libmoos10-dbg
 DEB_BUILD_PARALLEL = true
