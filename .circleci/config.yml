@@ -145,7 +145,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - get-orig-source:
+      - get-orig-source
           
       - amd64-stretch-build:
           requires:
