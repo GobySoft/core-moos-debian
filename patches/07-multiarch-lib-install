@@ -1,0 +1,29 @@
+Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
+===================================================================
+--- core-moos-10.0.2-release.orig/Core/libMOOS/CMakeLists.txt
++++ core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
+@@ -239,14 +239,21 @@ set_target_properties(${LIBNAME} PROPERT
+ # install headers
+ install(DIRECTORY ${INCLUDE_ROOTS} DESTINATION ${CMAKE_INSTALL_PREFIX} FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx")
+ 
++# override library version for debian sbuild cross-builds
++if(CMAKE_CROSSCOMPILING)
++  if (EXISTS "/etc/debian_version")
++    set(CMAKE_INSTALL_LIBDIR "lib/${CMAKE_LIBRARY_ARCHITECTURE}")
++  endif()
++endif()
++
++include(GNUInstallDirs)
+ 
+ # install libraries
+ INSTALL(TARGETS ${LIBNAME} EXPORT ${PROJECTNAME}Config
+-  LIBRARY DESTINATION lib
+-  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ )
+ 
+ 
+-
+ add_subdirectory(testing)
+ 

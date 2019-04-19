@@ -3,3 +3,4 @@
 03-fix-header-install
 05-no-magic-preprocessor-defines
 06-xpc-get-protocol-fix-arm
+07-multiarch-lib-install
