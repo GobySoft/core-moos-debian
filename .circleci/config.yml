@@ -69,7 +69,7 @@ job-template-amd64: &job-template-amd64
         command: |
           cp -r /root/debian ${SOURCE_WORKING_DIRECTORY} &&
           cp /root/src/changelog ${SOURCE_WORKING_DIRECTORY}/debian &&
-          sed -i "s/__DISTRO_RELEASE_VERSION__/${DISTRO_RELEASE_VERSION}/"$ "s/__DISTRO_RELEASE_CODENAME__/${DISTRO_RELEASE_CODENAME}/" ${SOURCE_WORKING_DIRECTORY}/debian/changelog
+          sed -i "s/DISTRO_RELEASE_VERSION/${DISTRO_RELEASE_VERSION}/"$ "s/DISTRO_RELEASE_CODENAME/${DISTRO_RELEASE_CODENAME}/" ${SOURCE_WORKING_DIRECTORY}/debian/changelog
     - run: &run-install-build-deps
         name: Install build dependencies
         command: |
@@ -199,7 +199,7 @@ jobs:
             cd .. &&
             export NEWVERSION="$(echo ../*.orig.tar.gz | sed 's/.*_\(.*\)\.orig\.tar\.gz/\1/')"
             COMMENT="Autobuild for version ${NEWVERSION}" &&
-            dch --newversion=${NEWVERSION}-4~__DISTRO_RELEASE_VERSION__.1 -D __DISTRO_RELEASE_CODENAME__ "${COMMENT}" &&
+            dch --newversion=${NEWVERSION}-4~DISTRO_RELEASE_VERSION.1 -D DISTRO_RELEASE_CODENAME "${COMMENT}" &&
             cp debian/changelog /root/src
       - store_artifacts:
           path: /root/src
