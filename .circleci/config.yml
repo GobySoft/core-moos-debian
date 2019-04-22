@@ -197,7 +197,7 @@ jobs:
           name: Add changelog entry 
           command: |
             cd .. &&
-            export NEWVERSION="$(echo ../*.orig.tar.gz | sed 's/.*_\(.*\)\.orig\.tar\.gz/\1/')"
+            export NEWVERSION="$(echo *.orig.tar.gz | sed 's/.*_\(.*\)\.orig\.tar\.gz/\1/')"
             COMMENT="Autobuild for version ${NEWVERSION}" &&
             dch --newversion=${NEWVERSION}-4~DISTRO_RELEASE_VERSION.1 -D DISTRO_RELEASE_CODENAME "${COMMENT}" &&
             cp debian/changelog /root/src
