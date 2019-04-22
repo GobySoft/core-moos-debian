@@ -2,7 +2,7 @@ Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
 ===================================================================
 --- core-moos-10.0.2-release.orig/Core/libMOOS/CMakeLists.txt
 +++ core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
-@@ -239,14 +239,21 @@ set_target_properties(${LIBNAME} PROPERT
+@@ -239,14 +239,19 @@ set_target_properties(${LIBNAME} PROPERT
  # install headers
  install(DIRECTORY ${INCLUDE_ROOTS} DESTINATION ${CMAKE_INSTALL_PREFIX} FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx")
  
@@ -12,8 +12,6 @@ Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
 +    set(CMAKE_INSTALL_LIBDIR "lib/${CMAKE_LIBRARY_ARCHITECTURE}")
 +  endif()
 +endif()
-+
-+include(GNUInstallDirs)
  
  # install libraries
  INSTALL(TARGETS ${LIBNAME} EXPORT ${PROJECTNAME}Config
@@ -26,4 +24,21 @@ Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
  
 -
  add_subdirectory(testing)
+ 
+Index: core-moos-10.0.2-release/CMakeLists.txt
+===================================================================
+--- core-moos-10.0.2-release.orig/CMakeLists.txt
++++ core-moos-10.0.2-release/CMakeLists.txt
+@@ -201,8 +201,10 @@ set(VERSION_FILE "${PROJECT_BINARY_DIR}/
+ configure_file( "cmake/ProjectConfigVersion.cmake.in" ${VERSION_FILE} @ONLY )
+ 
+ 
+-install(EXPORT ${PROJECTNAME}Config DESTINATION share/${PROJECTNAME}/cmake)
+-install(FILES ${VERSION_FILE} DESTINATION share/${PROJECTNAME}/cmake)
++include(GNUInstallDirs)
++
++install(EXPORT ${PROJECTNAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECTNAME})
++install(FILES ${VERSION_FILE} DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECTNAME})
+ 
+ 
  

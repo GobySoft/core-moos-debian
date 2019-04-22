@@ -1,6 +1,8 @@
---- a/Core/libMOOS/CMakeLists.txt
-+++ b/Core/libMOOS/CMakeLists.txt
-@@ -237,7 +237,7 @@
+Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
+===================================================================
+--- core-moos-10.0.2-release.orig/Core/libMOOS/CMakeLists.txt
++++ core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
+@@ -242,7 +242,7 @@ set_target_properties(${LIBNAME} PROPERT
  
  #######################################
  # install headers
