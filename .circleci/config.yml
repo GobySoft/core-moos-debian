@@ -65,15 +65,11 @@ job-template-amd64: &job-template-amd64
           mkdir -p ${SOURCE_WORKING_DIRECTORY} && cd ${SOURCE_WORKING_DIRECTORY} &&
           tar xfz ../*.orig.tar.gz --strip-components=1
     - run: &run-nest-deb
-        name: Nest debian source into project source
-        command: cp -r /root/debian ${SOURCE_WORKING_DIRECTORY}
-    - run: &run-dch
-        name: Generate original source tarball and add changelog entry 
+        name: Nest debian source into project source and do changelog substitution
         command: |
-          cd ${SOURCE_WORKING_DIRECTORY} &&
-          export NEWVERSION="$(echo ../*.orig.tar.gz | sed 's/.*_\(.*\)\.orig\.tar\.gz/\1/')"
-          COMMENT="Autobuild for version ${NEWVERSION}" &&
-          dch --newversion=${NEWVERSION}-3~${DISTRO_RELEASE_VERSION}.1 -D ${DISTRO_RELEASE_CODENAME} "${COMMENT}"
+          cp -r /root/debian ${SOURCE_WORKING_DIRECTORY} &&
+          cp /root/src/changelog ${SOURCE_WORKING_DIRECTORY}/debian &&
+          sed -i "s/__DISTRO_RELEASE_VERSION__/${DISTRO_RELEASE_VERSION}/"$ "s/__DISTRO_RELEASE_CODENAME__/${DISTRO_RELEASE_CODENAME}/" ${SOURCE_WORKING_DIRECTORY}/debian/changelog
     - run: &run-install-build-deps
         name: Install build dependencies
         command: |
@@ -197,12 +193,21 @@ jobs:
             make -f debian/rules get-orig-source &&
             mkdir -p /root/src &&
             mv *.tar.gz /root/src
+      - run:
+          name: Add changelog entry 
+          command: |
+            cd .. &&
+            export NEWVERSION="$(echo ../*.orig.tar.gz | sed 's/.*_\(.*\)\.orig\.tar\.gz/\1/')"
+            COMMENT="Autobuild for version ${NEWVERSION}" &&
+            dch --newversion=${NEWVERSION}-4~__DISTRO_RELEASE_VERSION__.1 -D __DISTRO_RELEASE_CODENAME__ "${COMMENT}" &&
+            cp debian/changelog /root/src
       - store_artifacts:
           path: /root/src
       - persist_to_workspace:
           root: /root/src
           paths:
             - '*.tar.gz'
+            - 'changelog'
             
   amd64-stretch-build:
     <<: *job-template-amd64
