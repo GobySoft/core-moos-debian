@@ -131,10 +131,10 @@ job-template-amd64: &job-template-amd64
 job-template-cross: &job-template-cross
   <<: *job-template-amd64
 
-# base upload off Focal build
+# base upload off Bionic build
 job-template-upload: &job-template-upload
   <<: *job-template-amd64
-  docker: *docker-base-focal
+  docker: *docker-base-bionic
   
 ## Begin actual config
 version: 2
@@ -209,8 +209,9 @@ workflows:
             - armhf-buster-build
             - armhf-bionic-build
             - armhf-focal-build
-            - armhf-xenial-build            
-            
+            - armhf-xenial-build
+            # dput doesn't like being run in parallel
+            - continuous-upload
 jobs:
   get-orig-source:
     <<: *job-template-amd64
@@ -359,7 +360,7 @@ jobs:
     <<: *job-template-upload
     environment:
       <<: *environment-template-common
-      <<: *environment-template-focal
+      <<: *environment-template-bionic
       <<: *environment-template-amd64
       UPLOAD_DESTINATION: "gobysoft-continuous"
     steps: &steps-upload
@@ -388,7 +389,7 @@ jobs:
     <<: *job-template-upload
     environment:
       <<: *environment-template-common
-      <<: *environment-template-focal
+      <<: *environment-template-bionic
       <<: *environment-template-amd64
       UPLOAD_DESTINATION: "gobysoft-release"
     steps: *steps-upload
