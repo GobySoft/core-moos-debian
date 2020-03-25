@@ -2,7 +2,7 @@ Index: core-moos-10.4.0/Core/libMOOS/CMakeLists.txt
 ===================================================================
 --- core-moos-10.4.0.orig/Core/libMOOS/CMakeLists.txt
 +++ core-moos-10.4.0/Core/libMOOS/CMakeLists.txt
-@@ -145,7 +145,8 @@ if(UNIX)
+@@ -149,7 +149,8 @@ if(UNIX)
      target_link_libraries(MOOS
          PUBLIC "${THREAD_LIB}"
          PRIVATE m
