@@ -12,7 +12,7 @@ Index: core-moos-10.4.0/Core/libMOOS/CMakeLists.txt
 -    if (TARGET Threads::Threads)
 -        set(THREAD_LIB Threads::Threads)
 +    if(CMAKE_CROSSCOMPILING)
-+        set(THREAD_LIB "${CMAKE_THREAD_LIBS_INIT}")
++        set(THREAD_LIB "pthread")
      else()
 +      set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 +      set(THREADS_PREFER_PTHREAD_FLAG TRUE)
