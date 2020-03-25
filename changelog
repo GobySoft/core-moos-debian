@@ -1,3 +1,9 @@
+core-moos (10.4.0-0~tes1~ubuntu18.04.1) bionic; urgency=medium
+
+  * New upstream release
+
+ -- Toby Schneider <toby@gobysoft.org>  Wed, 25 Mar 2020 16:04:58 -0400
+
 core-moos (10.0.2-0~tes7~ubuntu18.04.1) bionic; urgency=medium
 
   * Changed USE_ASYNC_COMMS=ON

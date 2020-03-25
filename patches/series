@@ -1,6 +1,2 @@
-01-build-soversioned-shared-library
-02-export-config
-03-fix-header-install
-05-no-magic-preprocessor-defines
-06-xpc-get-protocol-fix-arm
 07-multiarch-lib-install
+08-add-soversion

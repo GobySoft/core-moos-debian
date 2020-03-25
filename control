@@ -2,8 +2,8 @@ Source: core-moos
 Priority: extra
 Section: science
 Maintainer: Toby Schneider <tes.aubergine@gmail.com>
-Build-Depends: cdbs, debhelper (>= 7.0.50~), cmake (>= 2.6), libstdc++-dev
-Standards-Version: 3.9.3
+Build-Depends: cdbs, debhelper (>= 10~), cmake (>= 2.6)
+Standards-Version: 3.9.7
 Homepage: http://themoos.org/
 Vcs-Git: https://github.com/themoos/core-moos.git
 Vcs-Browser: https://github.com/themoos/core-moos

@@ -10,7 +10,7 @@ include /usr/share/cdbs/1/class/cmake.mk
 
 # Add here any variable or target overrides you need.
 
-DEB_CMAKE_EXTRA_FLAGS = -DCMAKE_BUILD_TYPE=Debug -DUSE_ASYNC_COMMS=ON
+DEB_CMAKE_EXTRA_FLAGS = -DCMAKE_BUILD_TYPE=Debug -DUSE_ASYNC_COMMS=ON -DBUILD_SHARED_LIBS=ON
 DEB_BUILD_PARALLEL = true
 
 DEB_BUILD_ARCH ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)

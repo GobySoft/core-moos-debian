@@ -1,10 +1,10 @@
-Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
+Index: core-moos-10.4.0/Core/libMOOS/CMakeLists.txt
 ===================================================================
---- core-moos-10.0.2-release.orig/Core/libMOOS/CMakeLists.txt
-+++ core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
-@@ -239,14 +239,19 @@ set_target_properties(${LIBNAME} PROPERT
- # install headers
- install(DIRECTORY ${INCLUDE_ROOTS} DESTINATION ${CMAKE_INSTALL_PREFIX} FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx")
+--- core-moos-10.4.0.orig/Core/libMOOS/CMakeLists.txt
++++ core-moos-10.4.0/Core/libMOOS/CMakeLists.txt
+@@ -199,11 +199,18 @@ install(
+     FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx"
+ )
  
 +# override library version for debian sbuild cross-builds
 +if(CMAKE_CROSSCOMPILING)
@@ -12,26 +12,24 @@ Index: core-moos-10.0.2-release/Core/libMOOS/CMakeLists.txt
 +    set(CMAKE_INSTALL_LIBDIR "lib/${CMAKE_LIBRARY_ARCHITECTURE}")
 +  endif()
 +endif()
- 
++
  # install libraries
- INSTALL(TARGETS ${LIBNAME} EXPORT ${PROJECTNAME}Config
+ install(TARGETS MOOS
+   EXPORT MOOS
 -  LIBRARY DESTINATION lib
 -  ARCHIVE DESTINATION lib
 +  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 +  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
  )
  
- 
--
  add_subdirectory(testing)
- 
-Index: core-moos-10.0.2-release/CMakeLists.txt
+Index: core-moos-10.4.0/CMakeLists.txt
 ===================================================================
---- core-moos-10.0.2-release.orig/CMakeLists.txt
-+++ core-moos-10.0.2-release/CMakeLists.txt
-@@ -140,6 +140,14 @@ IF("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC"  )
- ENDIF("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "x86_64")
+--- core-moos-10.4.0.orig/CMakeLists.txt
++++ core-moos-10.4.0/CMakeLists.txt
+@@ -180,6 +180,15 @@ if(UNIX OR "${CMAKE_SYSTEM_PROCESSOR}" S
+     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+ endif()
  
 +# override library version for debian sbuild cross-builds
 +if(CMAKE_CROSSCOMPILING)
@@ -41,18 +39,16 @@ Index: core-moos-10.0.2-release/CMakeLists.txt
 +endif()
 +
 +include(GNUInstallDirs)
- 
++
  add_subdirectory(Core)
  
-@@ -200,9 +208,5 @@ endif()
- set(VERSION_FILE "${PROJECT_BINARY_DIR}/${PROJECTNAME}ConfigVersion.cmake")
- configure_file( "cmake/ProjectConfigVersion.cmake.in" ${VERSION_FILE} @ONLY )
+ #########################
+@@ -218,7 +227,7 @@ write_basic_package_version_file("${VERS
+ #########################
  
--
--install(EXPORT ${PROJECTNAME}Config DESTINATION share/${PROJECTNAME}/cmake)
--install(FILES ${VERSION_FILE} DESTINATION share/${PROJECTNAME}/cmake)
--
--
--
-+install(EXPORT ${PROJECTNAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECTNAME})
-+install(FILES ${VERSION_FILE} DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECTNAME})
+ # Provide a cmake config script for the install directory
+-set(PROJECT_CONFIG_PATH "lib/cmake/MOOS")
++set(PROJECT_CONFIG_PATH "${CMAKE_INSTALL_LIBDIR}/cmake/MOOS")
+ install(
+     EXPORT MOOS
+     NAMESPACE MOOS::
