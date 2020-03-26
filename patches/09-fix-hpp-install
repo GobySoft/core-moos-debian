@@ -7,7 +7,7 @@ Index: core-moos-10.4.0/Core/libMOOS/CMakeLists.txt
      DIRECTORY ${INCLUDE_ROOTS}
      DESTINATION .
 -    FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx"
-+    FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx" PATTERN "*.hpp"
++    FILES_MATCHING PATTERN "*.h" PATTERN "*.hxx" PATTERN "GetPot*"
  )
  
  # override library version for debian sbuild cross-builds
