@@ -1,0 +1,13 @@
+Index: core-moos-10.4.0/Core/libMOOS/Comms/MOOSAsyncCommClient.cpp
+===================================================================
+--- core-moos-10.4.0.orig/Core/libMOOS/Comms/MOOSAsyncCommClient.cpp
++++ core-moos-10.4.0/Core/libMOOS/Comms/MOOSAsyncCommClient.cpp
+@@ -342,7 +342,7 @@ bool MOOSAsyncCommClient::MonitorAndLimi
+             static_cast<unsigned int> (TotalDelay);
+     if (sleep_ms > 0)
+     {
+-        std::cerr << "I'm sleeping for " << TotalDelay << " ms ("<<TotalDelay/GetMOOSTimeWarp()<<" real ms)\n";
++        // std::cerr << "I'm sleeping for " << TotalDelay << " ms ("<<TotalDelay/GetMOOSTimeWarp()<<" real ms)\n";
+         MOOSPause(sleep_ms,false);
+     }
+ 

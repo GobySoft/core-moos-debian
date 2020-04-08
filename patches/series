@@ -1,3 +1,4 @@
 07-multiarch-lib-install
 08-add-soversion
 09-fix-hpp-install
+10-remove-debug-output
