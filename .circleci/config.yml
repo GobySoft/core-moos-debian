@@ -31,7 +31,7 @@ environment-template-buster: &environment-template-buster
   DISTRO_RELEASE_CODENAME: "buster"
   DISTRO_RELEASE_VERSION: "debian10"
 
-environment-template-buster: &environment-template-bullseye
+environment-template-bullseye: &environment-template-bullseye
   DISTRO_RELEASE_CODENAME: "bullseye"
   DISTRO_RELEASE_VERSION: "debian11"
   
